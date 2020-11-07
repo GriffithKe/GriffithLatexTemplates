@@ -1,0 +1,169 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[all]{xy}
+\usepackage{amsmath,amsthm,amssymb,color,latexsym}
+\usepackage{geometry}
+\geometry{letterpaper}
+\usepackage{graphicx}
+
+\newtheorem{problem}{Problem}
+\newenvironment{solution}[1][\it{Solution}]{\textbf{#1. } }{$\square$}
+
+
+\begin{document}
+\noindent CSC3001 Fundamental question 6 Autumn 2020\hfill Problem Set \#\\
+Aron Ke. (Oct/22)
+
+\hrulefill
+
+
+\begin{problem}
+Compute the following greatest common divisor:
+
+(a) gcd(12,8)
+
+(b) gcd(36,84)
+
+(c) gcd(120,98)
+
+\end{problem}
+
+\begin{solution}
+
+(a) gcd(12,8)=4
+
+(b) gcd(36,84)=12
+
+(c) gcd(120,98)=2
+
+\end{solution}
+
+\begin{problem}
+  Using the Euclidean Algorithm to find the greatest common divisor for the numbers in Question1.
+\end{problem}
+
+\begin{solution}
+
+(a) gcd(12,8)=gcd(8,4)=gcd(4,0)=4
+
+(b) gcd(36,84)=gcd(36,12)=gcd(12,0)=12
+
+(c) gcd(120,98)=gcd(98,22)=gcd(22,10)=gcd(10,2)=gcd(2,0)=2
+
+\end{solution}
+
+\begin{problem}
+  Determine the following statements are true or false:
+
+  (a)If gcd(a,b)=1 and gcd(a,c)=1, then gcd(b,c)=1
+
+  (b)If gcd(a,b)=1 and gcd(a,c)=1, then gcd(a, bc)=1
+\end{problem}
+
+\begin{solution}
+
+(a) false. Counterexample: a=5,b=4,c=2, gcd(a,b)=gcd(a,c)=1 but gcd(b,c)=2
+
+(b) true. Proof
+
+by Bezout’s identity, there exist s,t,u,v such that
+
+$$\begin{cases}
+  sa+tb=1\\
+  ua+vc=1
+\end{cases}$$
+
+So $(sa+tb)(ua+vc)=1$. It then gives $(sau+svc+tbu)a+(tv)bc=1$, which implies that spc(a,bc)=1.
+
+Hence gcd(a,bc)=1
+
+\end{solution}
+
+\begin{problem}
+  Prove that if gcd(x,y)=1, then gcd(x+y,x-y)=1 or 2
+\end{problem}
+
+\begin{solution}
+
+Proof by cases.
+
+$\because gcd(x,y)=1$
+
+$\therefore spc(x,y)=1, \exists t,u\in\mathbb{Z}\ such\ that\ tx+uy=1$
+
+it then gives $\frac{t+u}{2}(x+y)+\frac{t-u}{2}(x-y)=1$
+
+(i) If ($t\equiv 1\ mod\ 2$ and $u\equiv 1\ mod\ 2$) or ($t\equiv 0\ mod\ 2$ and $u\equiv 0\ mod\ 2$) = true, then $\frac{t+u}{2}$ and $\frac{t-u}{2}$ are integers. Then $spc(x+y,x-y)=1$
+
+(ii) If ($t\equiv 1\ mod\ 2$ and $u\equiv 1\ mod\ 2$) or ($t\equiv 0\ mod\ 2$ and $u\equiv 0\ mod\ 2$) = false, then $\frac{t+u+1}{2}$ and $\frac{t-u+1}{2}$ are integers.
+
+Suppose $\exists n,m\in\mathbb{Z}$ such that $n(x+y)+m(x-y)=1$. Then $(n+m)x+(n-m)y=1$. Substracting $(n+m)x+(n-m)y=1$ and $tx+uy=1$, we have $(n+m-t)x+(n-m-u)y=0$.
+
+$\because$ gcd(x,y)=1, then $x\not| y$ and $y\not| x$
+
+$\therefore$ $rx+qy=0,(r,q\in\mathbb{Z})\Longrightarrow r=q=0$
+
+$\therefore \begin{cases}
+  n+m=t\\
+  n-m=u
+\end{cases}$, it gives $t+u=2n$, $t-u=2m$, contradicting our assumption that $t+u$ and $t-u$ are not both even numbers.
+
+Hence $\not\exists n,m\in\mathbb{Z}$. i.e. spc(x+y,x-y)=2
+
+\end{solution}
+
+\begin{problem}
+  Use the Euclidean Algorithm to compute gcd(120,84), and then find the integer a and b such that gcd(120,84)=120a+84b
+\end{problem}
+
+\begin{solution}
+
+gcd(120,84)=gcd(84,36)=gcd(36,12)=gcd(12,0)=12
+
+In the Euclidean Algorithm, we have $120=1\times84+36$ and $84=2\times36+12$. By these two equalities we have
+
+$$\begin{aligned}
+  12&=84-2\times36\\
+  &=84-2\times(120-84)\\
+  &=3\times84-2\times120
+\end{aligned}$$
+
+So a=-2,b=3
+
+\end{solution}
+
+\begin{problem}
+  Prove that for any $n\in\mathbb{Z}$, gcd(n,n+1)=1. Conclude that if a prime p divides n, then p cannot divide n+1
+\end{problem}
+
+\begin{solution}
+
+$gcd(n,n+1)=spc(n,n+1)=(n+1)-n=1$
+
+If $p|n$ then $\exists m$ such that $n=pm$.
+
+Then $gcd(n+1,p)=spc(pm+1,p)=pm+1-pm=1$. i.e. p cannot divide n+1
+
+\end{solution}
+
+\begin{problem}
+  If the equation gcd(n,m)=gcd(n+m,n-m) is true? Prove it if it is true, otherwise, give a counter example.
+\end{problem}
+
+\begin{solution}
+Counterexample: gcd(5,3)=1, but gcd(5+3,5-3)=2
+\end{solution}
+
+\begin{problem}
+  Suppose n is even and gcd(n,m)=5, show that m is odd
+\end{problem}
+
+\begin{solution}
+Proof by contradiction
+
+Assume that m is even. Then $2|n$ and $2|m$, $5|n$ and $5|m$. Therefore, $10|n$ and $10|m$. $10>5$ which contradicts the assumption that gcd(n,m)=5
+
+Hence m is odd
+\end{solution}
+
+\end{document}
