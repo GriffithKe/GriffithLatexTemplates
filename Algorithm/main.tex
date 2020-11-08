@@ -1,0 +1,517 @@
+\documentclass{report}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{arevmath}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\renewcommand{\baselinestretch}{2}
+
+% set the default code style
+\lstset{
+    frame=tb, % draw a frame at the top and bottom of the code block
+    tabsize=4, % tab space width
+    showstringspaces=false, % don't mark spaces in strings
+    numbers=left, % display line numbers on the left
+    commentstyle=\color{green}, % comment color
+    keywordstyle=\color{blue}, % keyword color
+    stringstyle=\color{red} % string color
+}
+
+\author{Shuqi Ke}
+\title{CSC3100 Assignment 1 Report}
+\begin{document}
+\maketitle
+\tableofcontents
+
+\chapter{Problem 1: Merge Sort}
+
+\section{Possible Solutions}
+
+\subsection{Problem analysis}
+
+The problem is to sort some numbers. The input scale is up to 500000 numbers.
+
+\noindent
+For typical sorting problem, we can apply different kinds of algorithms:
+\begin{itemize}
+    \item $O(n^2)$ algorithms: selection sort, insertion sort. They require much more time and are not efficient enough for this problem.
+    \item $O(n \log n)$ algorithms: merge sort
+    \item Quick sort (Average performance $O(nlogn)$)
+    \item Bucket sort, counting sort: the data is in long long type of c++. Since the data is big, bucket sort and counting sort are not suitable for this problem.
+\end{itemize}
+
+However, the problem requires us to sort the numbers by implementing merge sort.
+Therefore, the proper solution is merge sort.
+
+\subsection{Description of possible solution}
+
+Merge sort is a divide-and-conquer algorithm. It generally works as follows:
+
+\begin{enumerate}
+    \item For the current array, equally divide it into two subarrays by its midpoint.
+    \item Recursively sort these two subarrays.
+    \item Merge the two sorted subarrays.
+\end{enumerate}
+
+\noindent
+Merge sort has some advantages. It is stable and works in $\Theta(nlogn)$ time.
+
+\noindent
+There are four possible implementations for merge sort. If we consider the algorithmic implementation, we can implement merge sort either \textbf{Top-down} or \textbf{Buttom-up}. If we consider the data structure implementation, we can implement merge sort with either \textbf{array} or \textbf{linked list}
+
+\section{My Solution}
+
+I use buttom-up implementation with three optimizations:
+
+\begin{itemize}
+    \item stable $\Theta(n)$ working memory
+    \item insertion sort in small cases
+    \item faster input/output implementation
+\end{itemize}
+
+\subsection{Buttom-up implementation}
+
+In divide and conquer, instead of calling recursive function every time, we enumerate the length of subarrays from length 1 to A.length.
+Merge from small subarrays to bigger subarrays.
+
+\begin{algorithm}
+    \caption{Bottum Up Merge Sort}
+    \label{euclid}
+    \begin{algorithmic}[1] % The number tells where the line numbering should start
+        \Function{ButtomUpMergeSort}{l,r,A[ ],B[ ]} \Comment{A, B are arrays. Their index starts from 1}
+            \State width $\gets$ 1
+            \While{width <= A.length} \Comment{Loop until the maximum length}
+                \State i $\gets$ 0
+                \While{i <= A.length}
+                    \State BottumUpMerge(i,min\{i + width, A.length + 1\},min\{i + 2 * width, A.length + 1\},A,B)
+                \EndWhile
+                \State CopyArray(B, A)
+            \EndWhile
+        \EndFunction
+        \Function{ButtomUpMerge}{l,mid,r,A[ ],B[ ]}
+            \State Let B be a new array
+            \State i $\gets$ l, j $\gets$ mid, k $\gets$ l
+            \While{k < r}
+                \If{i < mid and (j >= r || A[i] <= A[j])}
+                    \State B[k] = A[i];
+                    \State i $\gets$ i + 1
+                \Else
+                    \State B[k] = A[j];
+                    \State j $\gets$ j + 1
+                \EndIf
+            \EndWhile
+        \EndFunction
+        \Function{CopyArray}{B[ ],A[ ]}
+            \State A $\gets$ B
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+
+\subsection{Stable $\Theta(n)$ working memory}
+
+In the above pseudo-code, I use array B[1,...,n] as a temporary memory for buttom-up merge.
+Using only A[1,...,n] and B[1,...,n] throughout the whole algorithm, my solution has stable $\Theta(n)$ working memory.
+
+\subsection{Faster input/output implementation}
+
+This optimization is essential for this problem because the data amount is large.
+As described in the problem, the total number $N\leq 500000$. Inputing and outputing data take $\Theta(n)$ time.
+For Java implementation, I will use bufferedreader instead of Scanner.
+For c++ implementation, I will use scanf or getchar, printf or putchar instead of cin and cout.
+
+\subsection{Source Code}
+
+\begin{lstlisting}[language=C++, caption={Problem 1 c++ source code}]
+#include <cstdio>
+#include <cstring>
+#include <iostream>
+
+long long arr[2][500011];
+int n, cur = 0;
+
+void merge(int left, int mid, int right) {
+    int i = left, j = mid, ind = left - 1;
+    while (i < mid && j < right) {
+        if (arr[cur][i] <= arr[cur][j])
+            arr[cur^1][++ind] = arr[cur][i++];
+        else
+            arr[cur^1][++ind] = arr[cur][j++];
+    }
+    while (i < mid)
+        arr[cur^1][++ind] = arr[cur][i++];
+    while (j < right)
+        arr[cur^1][++ind] = arr[cur][j++];
+}
+
+void buttom_up_merge_sort() {
+    for (int k = 1; k <= n; k <<= 1) {
+        for (int i = 1; i <= n; i += (k << 1))
+            merge(i, std::min(i + k, n + 1), std::min(i + (k << 1), n + 1));
+        cur ^= 1;
+    }
+}
+
+int main() {
+    scanf("%d", &n);
+    for (int i = 1; i <= n; ++i)
+        scanf("%lld", &arr[cur][i]);
+    buttom_up_merge_sort();
+    for (int i = 1; i <= n; ++i)
+        printf("%lld\n", arr[cur][i]);
+    return 0;
+}
+\end{lstlisting}
+
+\section{Comparison with other methods}
+
+\subsection{Advantages of buttom-up implementation}
+Let's compare buttom-up implementation with top-down implementation.
+Recursive function calls take extra memory in system's stack.
+When a program calls a function, that function goes on top of the call stack.
+When the amount of input data increases, the stack usage will also increase.
+Therefore, buttom-up loop implementation is more efficient than top-down recursive implementation in practice.
+
+\noindent
+Moreover, buttom-up loop implementation is precise and elegant in implementation.
+The code length can even be shorter than the recursive implementation.
+Hence, buttom-up loop implementation is better than top-down recursive implementation.
+
+\subsection{Advantages of stable $\Theta(n)$ working memory}
+
+We can analyze my solution's space complexity with other implementations.
+Some merge sort implementations create two arrays for temporary storage in the Merge function.
+If the program does not free this extra memory immediately, it may result in redundant memory use.
+
+We can also compare the time complexity in merge step.
+Some merge sort implementations copy the data from A array to two new arrays in merge step.
+After during merge step, they copy the data from these two arrays back to the original array.
+We can see this in the following implementation pseudo-code
+
+\begin{algorithm}[htbp]
+    \caption{Redundant Merge Implementation (bad solution)}
+    \begin{algorithmic}[1]
+        \Function{Merge}{A[ ],p,q,r}
+            \State n1 = q-p+1,n2 = r-q
+            Let L[1,...,n1+1] and R[1,...,n2+1] be new arrays
+            \For{i=1 to n1}
+                \State L[i]=A[p+i-1]
+            \EndFor
+            \For{j=1 to n2}
+                \State R[i]=A[q+j]
+            \EndFor
+            \State L[n1+1]=$\infty$,R[n2+1]=$\infty$,i = 1,j = 1
+            \For{k=p to r}
+                \If{L[i]$\leq$R[j]}
+                    \State A[k]=L[i]
+                    \State i=i+1
+                \Else
+                    \State A[k]=R[j]
+                    \State j=j+1
+                \EndIf
+            \EndFor
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+
+Such copy processes waste much time.
+In my solution, the copy process only proceed when all the subarrays (of same length) are sorted.
+Therefore, my solution is more efficient in merge step.
+
+\subsection{Advantages of faster input/output implementation}
+
+The input is considerably big.
+With faster input/output(IO) implementation, the time cost in IO is significantly reduced.
+If we do not use faster IO implementation, in some large test point on the Online Judge, the program will exceed the time limit.
+
+\section{Test of my solution}
+
+I submitted several solutions to the Online Platform.
+
+\noindent
+On average the top-down implementation takes 3.41s time and with 67.1 MB memory use.
+
+\noindent
+On average the buttom-up implementation takes 1.20s time and with 10.2 MB memory use.
+
+\noindent
+Hence, comparing the time and memory cost performance, I decide to use buttom-up implementation.
+
+\section{Further Improvements}
+
+\subsection{Merge sort with linked list}
+
+We can use linked list in merge sort so that we do not have to use temporary arrays in merge step.
+If we use linked list we can directly change the order of the two sorted subarrays.
+And it will be much efficient from theoretic perspective.
+
+\subsection{Wiki sort}
+
+We can also use Block Sort (also known as wiki sort).
+This algorithm takes both the advantages of insertion sort and merge sort.
+It is non-recursive and does not require the use of dynamic allocations.
+In other words, this algorithm does not take extra memory while maintaining to be stable.
+
+\begin{algorithm}[htbp]
+    \caption{Block Sort}
+    \begin{algorithmic}[1]
+        \Function{BlockSort}{A[ ]}
+            \State powerTwo=$2^{floor(log(A.length))}$
+            \State scale=A.length/powerTwo
+            \For{m=0 to powerTwo in step of 16}
+                \State InsertionSort(A,m*scale,m*scale+16*scale)
+            \EndFor
+            \For{len=16 to powerTwo, len=len+len}
+                \For{m=0 to powerTwo, m=m+len*2}
+                    \State start = m * scale
+                    \State mid = (m + len) * scale
+                    \State end = (m + len * 2) * scale
+                    \If (array[end − 1] < array[start])
+                    \State Rotate(A, mid − start, [start, end))
+                    \Else
+                        \If (array[mid − 1] > array[mid])
+                            \State Merge(A, L = [start, mid), R = [mid, end))
+                        \EndIf
+                    \EndIf
+                \EndFor
+            \EndFor
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
+
+\chapter{Problem 2: Prefix Expression}
+
+\section{Possible Solutions}
+
+\subsection{Problem analysis}
+This problem requires to evaluate a preffix expression.
+
+\subsection{Description of possible solutions}
+
+There are generally two kinds of implementations for this problem:
+\textbf{recursion} and \textbf{loop and stack method}.
+
+\section{My Solution}
+Use a recursive algorithm for this problem.
+Every operator is related to later two operands.
+Therefore, we can make use of this property to design our recursion.
+
+\subsection{Source Code}
+
+\begin{lstlisting}[language=C++, caption={Problem 2 c++ source code}]
+    #include <cstdio>
+    #include <cstdlib>
+    #include <cstring>
+    #include <iostream>
+    
+    using namespace std;
+    
+    const long long mo = 1e9 + 7;
+    int n;
+    
+    inline long long gg() {
+        if (!n) {
+            puts("Invalid");
+            exit (0);
+        }
+        for(n--;;) {
+            char c;
+            scanf("%c", &c);
+            if (c >= '0' && c <= '9') {
+                long long ans = 0;
+                for (;c >= '0' && c <= '9'; scanf("%c", &c))
+                    ans = ((ans << 3) + (ans << 1) + c - '0') % mo;
+                return ans % mo;
+            }
+            if (c == '+' || c == '-' || c == '*') {
+                long long lans = gg() % mo, rans = gg() % mo;
+                return c == '+'? lans + rans : (c == '-'? lans - rans : lans * rans);
+            }
+        }
+    }
+    
+    int main(int argc, char const *argv[])
+    {
+        scanf("%d", &n);
+        long long ans = gg();
+        if (n)
+            puts("Invalid");
+        else
+            printf("%lld", (ans + mo) % mo);
+        return 0;
+    }    
+\end{lstlisting}
+
+\section{Comparison with other methods}
+
+Let's first look at a naive stack implementation source code.
+It does not use recursive method.
+
+\begin{lstlisting}[language=C++, caption={Problem 2 bad solution}]
+    #include <cstdio>
+    #include <cstdlib>
+    #include <cstring>
+    #include <iostream>
+    
+    using namespace std;
+    
+    const long long mo = 1e9 + 7;
+    char ch[200];
+    int n, top;
+    bool isNum[2000010];
+    long long m[2000010], stack[2000010];
+    
+    long long toLongLong(char *p) {
+      long long ans = 0;
+      for (int i = 0; i < strlen(p); ++i) {
+        ans = ans * 10 + p[i] - '0';
+        if (ans > mo) {
+          ans %= mo;
+        }
+      }
+      return ans;
+    }
+    
+    int main(int argc, char const *argv[]) {
+      scanf("%d", &n);
+      for (int i = 1; i <= n; ++i) {
+        scanf("%s", ch);
+        switch (ch[0]) {
+        case '+':
+          m[i] = 0;
+          isNum[i] = false;
+          break;
+        case '-':
+          m[i] = 1;
+          isNum[i] = false;
+          break;
+        case '*':
+          m[i] = 2;
+          isNum[i] = false;
+          break;
+        default:
+          m[i] = toLongLong(ch);
+          isNum[i] = true;
+        }
+      }
+      bool flag = false;
+      for (int i = n; i >= 1; --i) {
+        if (isNum[i]) {
+          stack[++top] = m[i];
+        } else {
+          if (top < 2) {
+            flag = true;
+            break;
+          }
+          long long x = stack[top--];
+          long long y = stack[top--];
+          switch (int(m[i])) {
+          case 0:
+            stack[++top] = x + y;
+            break;
+          case 1:
+            stack[++top] = x - y;
+            break;
+          case 2:
+            stack[++top] = x * y;
+          }
+          if (stack[top] > mo) {
+            stack[top] %= mo;
+          }
+          if (stack[top] < -mo) {
+            stack[top] = (stack[top] + mo) % mo;
+          }
+        }
+      }
+      if (flag) {
+        puts("Invalid");
+      } else {
+        cout << (stack[top] + mo) % mo << endl;
+      }
+      return 0;
+    }    
+\end{lstlisting}
+
+This recursive method compute the result during the input process,
+while the stack method requires to input the whole data first and then
+traverse through the inputed data again.
+Also the stack method requires the programmer to implement a stack,
+which result in unprecise and longer code.
+Therefore, the recursive method is
+relatively more efficient than the naive stack method.
+
+\section{Test of my solution}
+
+I submitted several solutions to the Online Platform.
+
+\noindent
+On average the stack implementation takes 1.138s time with 20.23 MB memory use.
+
+\noindent
+On average the recursive implementation takes 0.9s time and with 13.3 MB memory use.
+
+\noindent
+Hence, comparing the time and memory cost performance, I decide to use recursion implementation.
+
+\section{Further Improvements}
+
+\subsection{Faster input/output(IO)}
+
+In c++ implementation, we can use fread function.
+It processes char input much faster.
+
+\begin{lstlisting}[language=C++, caption={Problem 2 Faster IO}]
+    namespace IO {
+        const int MAXBUF = 1 << 22;
+        inline char flow(){
+            static char B[MAXBUF],*S = B,*T = B;
+            if(S == T){
+                T = (S = B) + fread(B, 1, MAXBUF, stdin);
+                if(S == T)
+                    return 0;
+            }
+            return *S++;
+        }
+        // Faster reader for int-type
+        inline void Readin(int &x){
+            x = 0;
+            static char c;
+            for(; !isdigit(c = flow()););
+            for(x=c-48;isdigit(c=flow());x=(x<<1)+(x<<3)+c-48);
+        }
+        // Faster reader for long-long-type
+        inline void Readin(long long &x){
+            x = 0;
+            static char c;
+            for(; !isdigit(c = flow()););
+            for(x = c - 48; isdigit(c = flow()); x = (x << 1) + (x << 3) + c - 48);
+        }
+        // Faster writer for long-long-type
+        inline void Printout(long long x){
+            static char pb[101];
+            int top=0;
+            while(x) {
+                pb[++top] = (x % 10LL) + '0';
+                x /= 10LL;
+            }
+            while(top)
+                putchar(pb[top--]);
+            putchar('\n');
+        }
+    }
+\end{lstlisting}
+
+\paragraph{References}
+
+\begin{itemize}
+    \item \href{https://en.wikipedia.org/wiki/Block_sort#Algorithm}{Wikipedia: Block sort}
+    \item "Introduction to algorithms" by Thomas H.Cormen, Charles E.
+\end{itemize}
+
+\end{document}
+
+% \paragraph{}

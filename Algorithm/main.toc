@@ -1,0 +1,28 @@
+\contentsline {chapter}{\numberline {1}Problem 1: Merge Sort}{3}{chapter.1}% 
+\contentsline {section}{\numberline {1.1}Possible Solutions}{3}{section.1.1}% 
+\contentsline {subsection}{\numberline {1.1.1}Problem analysis}{3}{subsection.1.1.1}% 
+\contentsline {subsection}{\numberline {1.1.2}Description of possible solution}{4}{subsection.1.1.2}% 
+\contentsline {section}{\numberline {1.2}My Solution}{4}{section.1.2}% 
+\contentsline {subsection}{\numberline {1.2.1}Buttom-up implementation}{4}{subsection.1.2.1}% 
+\contentsline {subsection}{\numberline {1.2.2}Stable $\Theta (n)$ working memory}{4}{subsection.1.2.2}% 
+\contentsline {subsection}{\numberline {1.2.3}Faster input/output implementation}{6}{subsection.1.2.3}% 
+\contentsline {subsection}{\numberline {1.2.4}Source Code}{6}{subsection.1.2.4}% 
+\contentsline {section}{\numberline {1.3}Comparison with other methods}{8}{section.1.3}% 
+\contentsline {subsection}{\numberline {1.3.1}Advantages of buttom-up implementation}{8}{subsection.1.3.1}% 
+\contentsline {subsection}{\numberline {1.3.2}Advantages of stable $\Theta (n)$ working memory}{8}{subsection.1.3.2}% 
+\contentsline {subsection}{\numberline {1.3.3}Advantages of faster input/output implementation}{8}{subsection.1.3.3}% 
+\contentsline {section}{\numberline {1.4}Test of my solution}{10}{section.1.4}% 
+\contentsline {section}{\numberline {1.5}Further Improvements}{10}{section.1.5}% 
+\contentsline {subsection}{\numberline {1.5.1}Merge sort with linked list}{10}{subsection.1.5.1}% 
+\contentsline {subsection}{\numberline {1.5.2}Wiki sort}{10}{subsection.1.5.2}% 
+\contentsline {chapter}{\numberline {2}Problem 2: Prefix Expression}{12}{chapter.2}% 
+\contentsline {section}{\numberline {2.1}Possible Solutions}{12}{section.2.1}% 
+\contentsline {subsection}{\numberline {2.1.1}Problem analysis}{12}{subsection.2.1.1}% 
+\contentsline {subsection}{\numberline {2.1.2}Description of possible solutions}{12}{subsection.2.1.2}% 
+\contentsline {section}{\numberline {2.2}My Solution}{12}{section.2.2}% 
+\contentsline {subsection}{\numberline {2.2.1}Source Code}{12}{subsection.2.2.1}% 
+\contentsline {section}{\numberline {2.3}Comparison with other methods}{14}{section.2.3}% 
+\contentsline {section}{\numberline {2.4}Test of my solution}{18}{section.2.4}% 
+\contentsline {section}{\numberline {2.5}Further Improvements}{18}{section.2.5}% 
+\contentsline {subsection}{\numberline {2.5.1}Faster input/output(IO)}{18}{subsection.2.5.1}% 
+\contentsline {paragraph}{References}{20}{section*.2}% 
