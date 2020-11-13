@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.2.19)  13 NOV 2020 16:30
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.2.19)  13 NOV 2020 16:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -503,48 +503,50 @@ File: pst-tree.tex 2017/02/18 1.13 `pst-tree' (tvz,hv)
 )
 \c@lecnum=\count162
 \c@theorem=\count163
-
-No file trees.aux.
+ (./trees.aux)
 \openout1 = `trees.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 112.
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 112.
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 112.
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 112.
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 112.
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 112.
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 112.
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Info: Redefining \it@ocap on input line 112.
-LaTeX Info: Redefining \it@ccap on input line 112.
-ABD: EveryShipout initializing macros
-LaTeX Font Info:    Try loading font information for U+msa on input line 138.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 113.
+LaTeX Font Info:    ... okay on input line 113.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 113.
+LaTeX Font Info:    ... okay on input line 113.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 113.
+LaTeX Font Info:    ... okay on input line 113.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 113.
+LaTeX Font Info:    ... okay on input line 113.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 113.
+LaTeX Font Info:    ... okay on input line 113.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 113.
+LaTeX Font Info:    ... okay on input line 113.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 113.
+LaTeX Font Info:    ... okay on input line 113.
+LaTeX Info: Redefining \it@ocap on input line 113.
+LaTeX Info: Redefining \it@ccap on input line 113.
+ ABD: EveryShipout initializing macros
+LaTeX Font Info:    Try loading font information for U+msa on input line 139.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 138.
+LaTeX Font Info:    Try loading font information for U+msb on input line 139.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
+)
+LaTeX Font Info:    Try loading font information for T1+lmss on input line 216.
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/lm/t1lmss.fd
+File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10> not available
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 216.
+ [1
 
-] (./trees.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+] [2] (./trees.aux) ) 
 Here is how much of TeX's memory you used:
- 17974 strings out of 492916
- 365790 string characters out of 6133345
- 498407 words of memory out of 5000000
- 21670 multiletter control sequences out of 15000+600000
- 18594 words of font info for 27 fonts, out of 8000000 for 9000
+ 18146 strings out of 492916
+ 369599 string characters out of 6133345
+ 521122 words of memory out of 5000000
+ 21835 multiletter control sequences out of 15000+600000
+ 24424 words of font info for 29 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 55i,13n,83p,875b,1450s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,13n,83p,875b,1533s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on trees.pdf (1 page).
+Output written on trees.pdf (2 pages).

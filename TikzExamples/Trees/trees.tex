@@ -33,9 +33,10 @@
     \usetikzlibrary{shapes,arrows,fit,calc,positioning,trees,shadows}
         \tikzset{box/.style={draw, diamond, thick, text centered, minimum height=0.5cm, minimum width=1cm}}
         \tikzset{line/.style={draw, thick, -latex'}}
+        \tikzstyle{vertex}=[draw,fill=black!15,circle,minimum size=20pt,inner sep=0pt]
     \usepackage{pst-tree}
         \def\psedge{\ncangles[angleA=-90,angleB=90]}
-        \psset{levelsep=14mm,treesep=1.75cm,nodesep=3pt}
+        \psset{levelsep=14mm,treesep=1.8cm,nodesep=5pt}
     
     %
     % The following commands set up the lecnum (lecture number)
@@ -131,7 +132,7 @@
         A graph is called a forest if, and only if, it is circuit-free and not connected.
     \end{definition}
     
-    \begin{definition}[Taxonomy Tree]
+    \begin{example}[Taxonomy Tree]
         Taxonomy tree is a father set of decision tree.
         \begin{figure}[htbp]
             \hspace*{1.3cm}
@@ -152,7 +153,7 @@
             \rput[rc](0,0|family){Family}\rput[rc](0,0|genus){Genus}%
             \caption{A taxonomy tree}
         \end{figure}
-    \end{definition}
+    \end{example}
 
     \begin{example}[Decision Tree]
         Nodes represent different decision point. Edges represent different decision results.
@@ -207,5 +208,53 @@
             \caption{A decision tree for sorting three values.}
             \label{fig:sortingtree}
         \end{figure}
+    \end{example}
+
+    \begin{example}[Parse Tree]
+        This work has proved useful in constructing compilers for high- level computer languages. In the study of grammars, trees are often used to show the derivation of grammatically correct sentences from certain basic rules. Such trees are called syntactic derivation trees or parse trees.
+        \begin{tikzpicture}[font=\sffamily,thick,level/.style={sibling distance=50mm/#1}]
+            \node[vertex] {Sentence}
+                child {
+                    node[vertex] {Noun phrase}
+                    child {
+                        node[vertex] {article}
+                        child {
+                            node[vertex] {the}
+                        }
+                    }
+                    child {
+                        node[vertex] {adjective}
+                        child { node[vertex] {young} }
+                    }
+                    child {
+                        node[vertex] {noun}
+                        child { node[vertex] {man}}
+                    }
+                } child {
+                    node[vertex] {Verb phrase}
+                    child {
+                        node[vertex] {verb}
+                        child {
+                            node[vertex] {caught}
+                        }
+                    }
+                    child {
+                        node[vertex] {noun phrase}
+                        child {
+                            node[vertex] {article}
+                            child {
+                                node[vertex] {the}
+                            }
+                        }
+                        child {
+                            node[vertex] {noun}
+                            child {
+                                node[vertex] {ball}
+                            }
+                        }
+                    }
+                }
+            ;
+        \end{tikzpicture}
     \end{example}
 \end{document}
