@@ -1,0 +1,247 @@
+\documentclass[a4paper,9pt]{extarticle}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{tikz}
+
+\usepackage{amsmath,amssymb,textcomp,amsthm}
+\everymath{\displaystyle}
+
+\usepackage{times}
+\renewcommand\familydefault{\sfdefault}
+\usepackage{tgheros}
+\usepackage[defaultmono,scale=0.85]{droidmono}
+
+\usepackage{multicol}
+\setlength{\columnseprule}{0pt}
+\setlength{\columnsep}{20.0pt}
+\usepackage{enumitem}
+
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage[framemethod=TikZ]{mdframed}
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+
+\usepackage{geometry}
+\geometry{
+a4paper,
+total={210mm,297mm},
+left=10mm,right=10mm,top=10mm,bottom=15mm}
+
+\linespread{1.3}
+
+
+% custom title
+\definecolor{color1title}{HTML}{AB4C40}
+\makeatletter
+\renewcommand*{\maketitle}{%
+\noindent
+\begin{minipage}{\textwidth}
+\begin{tikzpicture}
+\node[rectangle,rounded corners=6pt,inner sep=10pt,fill=color1title,text width= 0.95\textwidth] {\color{white}\Huge \@title};
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\bigskip\bigskip
+}%
+\makeatother
+
+% custom section
+\definecolor{color2section}{HTML}{436495}%197294
+\usepackage[explicit]{titlesec}
+\newcommand*\sectionlabel{}
+\titleformat{\section}
+  {\gdef\sectionlabel{}
+   \normalfont\sffamily\Large\bfseries\scshape}
+  {\gdef\sectionlabel{\thesection\ }}{0pt}
+  {
+\noindent
+\begin{tikzpicture}
+\node[rectangle,rounded corners=3pt,inner sep=4pt,fill=color2section,text width= 0.95\columnwidth] {\color{white}\sectionlabel#1};
+\end{tikzpicture}
+  }
+\titlespacing*{\section}{0pt}{15pt}{10pt}
+
+
+% custom footer
+\usepackage{fancyhdr}
+\makeatletter
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot[C]{\footnotesize \textcopyright\ \@date\ \ \@author}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\makeatother
+
+
+\title{Calculus BC Equations}
+\author{Aron Ke}
+% * <mzhang1.student@thehudsonschool.org> 2017-03-30T13:34:20.173Z:
+%
+% ^.
+\date{2021}
+
+
+%
+\newcommand{\abs}[1]{\left| #1 \right|}
+%\renewcommand{\vec}[1]{\mathbf{#1}}
+%
+\usepackage{blindtext}
+
+%-----------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Theorem
+\definecolor{color3theo}{HTML}{0A61A4}
+\newcounter{theo}[section] \setcounter{theo}{0}
+\renewcommand{\thetheo}{\arabic{section}.\arabic{theo}}
+\newenvironment{theo}[2][]{%
+\refstepcounter{theo}%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=color3theo]
+{\color{white}\strut Theorem~\thetheo};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=color3theo]
+{\color{white}\strut Theorem~\thetheo:~#1};}}%
+}%
+\mdfsetup{innertopmargin=10pt,linecolor=color3theo,%
+linewidth=2pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+\label{#2}}{\end{mdframed}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Definition
+\definecolor{color3defi}{HTML}{023E6B}
+\newcounter{defi}[section] \setcounter{defi}{0}
+\renewcommand{\thedefi}{\arabic{section}.\arabic{defi}}
+\newenvironment{defi}[2][]{%
+\refstepcounter{defi}%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=color3defi]
+{\color{white}\strut Definition~\thedefi};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=color3defi]
+{\color{white}\strut Definition~\thedefi:~#1};}}%
+}%
+\mdfsetup{innertopmargin=10pt,linecolor=color3defi,%
+linewidth=2pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+\label{#2}}{\end{mdframed}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Lemma
+\definecolor{color4lem}{HTML}{5690CD}
+\newcounter{lem}[section] \setcounter{lem}{0}
+\renewcommand{\thelem}{\arabic{section}.\arabic{lem}}
+\newenvironment{lem}[2][]{%
+\refstepcounter{lem}%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=color4lem]
+{\color{white}\strut Lemma~\thelem};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=color4lem]
+{\color{white}\strut Lemma~\thelem:~#1};}}%
+}%
+\mdfsetup{innertopmargin=10pt,linecolor=color4lem,%
+linewidth=2pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+\label{#2}}{\end{mdframed}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Proof
+\newcounter{prf}[section]\setcounter{prf}{0}
+\renewcommand{\theprf}{\arabic{section}.\arabic{prf}}
+\newenvironment{prf}[2][]{%
+\refstepcounter{prf}%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=red!20]
+{\strut Proof~\theprf};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=red!20]
+{\strut Proof~\theprf:~#1};}}%
+}%
+\mdfsetup{innertopmargin=10pt,linecolor=red!20,%
+linewidth=2pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+\label{#2}}{\qed\end{mdframed}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Remark
+\newtheorem*{remark}{Remark}
+%-----------------------------------------------------
+
+%-----------------------------------------------------
+%Table of contents
+\usepackage{titlesec}
+\usepackage[titles]{tocloft}
+\AtBeginDocument{\renewcommand\contentsname{Table of Contents}}
+\titleformat{\chapter}[display]
+{}{\hfill\rule{.7\textwidth}{3pt}}{0pt}
+{\hspace*{.3\textwidth}\huge\bfseries}[\addvspace{-1pt}]
+\titleformat{name=\chapter,numberless}[display]
+{}{\hfill\rule{.7\textwidth}{3pt}}{0pt}
+{\hspace*{.3\textwidth}\huge\bfseries}[\addvspace{-1pt}]
+%-----------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\clearpage
+
+\section{Limits}
+
+\begin{defi}[Fuck]{def:fuck}
+    x
+\end{defi}
+
+\begin{theo}[Pythagoras' theorem]{thm:pythagoras}
+    In a right triangle, the square of the hypotenuse is equal to the sum of the squares of the catheti.
+    \[a^2+b^2=c^2\]
+\end{theo}
+In mathematics, the Pythagorean theorem, also known as Pythagoras' theorem (see theorem \ref{thm:pythagoras}), is a relation in Euclidean geometry among the three sides of a right triangle.
+     
+\begin{lem}[B\'ezout's identity]{lem:bezout}
+    Let $a$ and $b$ be nonzero integers and let $d$ be their greatest common divisor. Then there exist integers $x$ and $y$ such that:
+    \[ax+by=d\]
+\end{lem}
+This is a reference to Bezout's lemma \ref{lem:bezout}    
+
+\begin{remark}
+    x
+\end{remark}
+
+\end{document}

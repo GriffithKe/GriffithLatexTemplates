@@ -1,0 +1,8 @@
+\documentclass{beamer}
+\begin{document}
+\begin{page}
+    \def\xy#1#2#3{\setbox0=\hbox to\z@{%
+        \kern#1\raise#2\hbox{#3}\hss}%
+        \ht0=\z@\dp0=\z@\box0}
+\end{page}
+\end{document}

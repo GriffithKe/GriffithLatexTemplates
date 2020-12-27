@@ -1,0 +1,147 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{tikz}
+\usepackage[utf8]{inputenc}
+
+%%%Information to be included in the title page:
+\title{\textbf{Teamwork Skill Development}}
+\author{Aron Ke}
+\date{2020/12/9}
+% \logo{\includegraphics[height=1.5cm]{./img/cuhksz.png}}
+%%%
+
+%%%Set colors
+\definecolor{cor1}{RGB}{0,100,166}
+\definecolor{cor2}{RGB}{100,195,213}
+\definecolor{cor5}{RGB}{150,203,226}
+\definecolor{cor3}{RGB}{30,130,186}
+\definecolor{cor4}{RGB}{40,185,218}
+\definecolor{preto}{RGB}{0,0,0}
+\definecolor{branco}{RGB}{255,255,255}
+% Configuração das Cores
+\setbeamercolor{paleta1}{fg=cor1,bg=white}
+\setbeamercolor{paleta2}{fg=cor1,bg=white}
+\setbeamercolor{estrutura}{fg=cor1,bg=white}
+\setbeamercolor{titulo_rodape}{fg=black,bg=white}
+\setbeamercolor{data_rodape}{fg=gray,bg=white}
+\setbeamercolor{frametitle}{fg=branco,bg=cor1}
+%%%
+
+%%% Modelo do rodapé
+\defbeamertemplate*{footline}{mytheme}{%
+\leavevmode%
+\hbox{\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm]{titulo_rodape}%
+  \makebox[2em][l]{{\usebeamerfont{titulo_rodape}\textcolor{cor1}{\insertframenumber}}}%
+  {\usebeamercolor{titulo_rodape}\insertshorttitle}
+\end{beamercolorbox}%
+\begin{beamercolorbox}[wd=.2\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm]{data_rodape}%
+  \usebeamerfont{data_rodape}\insertshortdate%
+\end{beamercolorbox}%
+\begin{beamercolorbox}[wd=.3\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm,right]{titulo_rodape}%
+  \includegraphics[width=.2\paperwidth,height=7ex,keepaspectratio]{./img/cuhksz.png}\hspace*{2em}%
+\end{beamercolorbox}}%
+\vskip0pt%
+}
+%%%
+
+%%% Slide de Título
+\defbeamertemplate*{title page}{mytheme}[1][]
+{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \filldraw[cor1]
+    (current page.north west) --
+    ([yshift=-12cm]current page.north west) --
+    ([xshift=-4cm,yshift=-12cm]current page.north east) {[rounded corners=15pt]--
+    ([xshift=-4cm,yshift=3cm]current page.south east)} --
+    ([yshift=3cm]current page.south west) --
+    (current page.south west) --
+    (current page.south east) --
+    (current page.north east) -- cycle
+    ;
+  \filldraw[branco]
+    (current page.north west) --
+    ([yshift=-2.15cm]current page.north west) --
+    ([xshift=-3cm,yshift=-2.15cm]current page.north east) {[rounded corners=15pt]--
+    ([xshift=-3cm,yshift=3cm]current page.south east)} --
+    ([yshift=3cm]current page.south west) --
+    (current page.south west) --
+    (current page.south east) --
+    (current page.north east) -- cycle
+    ;
+    \filldraw[cor2]
+    ([xshift=-0.25cm,yshift=3cm]current page.south east)--
+    ([xshift=-2.75cm,yshift=3cm]current page.south east)--
+    ([xshift=-2.75cm,yshift=3.85cm]current page.south east)--
+    ([xshift=-0.25cm,yshift=3.85cm]current page.south east)-- cycle
+    ;
+    \filldraw[cor3]
+    ([xshift=-0.25cm,yshift=4cm]current page.south east)--
+    ([xshift=-2.75cm,yshift=4cm]current page.south east)--
+    ([xshift=-2.75cm,yshift=4.85cm]current page.south east)--
+    ([xshift=-0.25cm,yshift=4.85cm]current page.south east)-- cycle
+    ;
+    \filldraw[cor4]
+    ([xshift=-0.25cm,yshift=5cm]current page.south east)--
+    ([xshift=-2.75cm,yshift=5cm]current page.south east)--
+    ([xshift=-2.75cm,yshift=5.85cm]current page.south east)--
+    ([xshift=-0.25cm,yshift=5.85cm]current page.south east)-- cycle
+    ;
+    \filldraw[cor5]
+    ([xshift=-0.25cm,yshift=6cm]current page.south east)--
+    ([xshift=-2.75cm,yshift=6cm]current page.south east)--
+    ([xshift=-2.75cm,yshift=6.85cm]current page.south east)--
+    ([xshift=-0.25cm,yshift=6.85cm]current page.south east)-- cycle
+    ;
+  \node[text=branco,anchor=south west,font=\sffamily\LARGE,text width=.68\paperwidth] 
+  at ([xshift=10pt,yshift=-0.5cm]current page.west)
+  (title)
+  {\raggedright\inserttitle};  
+  
+  \node[text=cor1,anchor=south west,font=\sffamily\small,text width=.75\paperwidth] 
+  at ([xshift=10pt,yshift=3.6cm]current page.west)
+  (title)
+  {\raggedright School of Science and Engineering};
+  
+  
+  % \node[anchor=west]
+  %at ([xshift=10.1cm,yshift=8.5cm]current page.south west)
+  %{\includegraphics[height=1.5cm]{imagens/logo.png}};
+  
+  \node[anchor=east]
+  at ([xshift=-0.15cm,yshift=-1cm]current page.north east)
+  {\includegraphics[width=2.5cm]{./img/cuhksz.png}};
+  
+  \node[text=preto,font=\large\sffamily,anchor=south west]
+  at ([xshift=30pt,yshift=0.5cm]current page.south west)
+  (date)
+  {\insertdate};
+  \node[text=preto,font=\large\sffamily,anchor=south west]
+  at ([yshift=5pt]date.north west)
+  (author)
+  {\insertauthor};
+  \end{tikzpicture}%
+}
+%%%
+
+%%% remove navigation symbols
+\setbeamertemplate{navigation symbols}{}
+%%%
+
+%%% definition of the itemize templates
+\setbeamertemplate{itemize item}[circle]
+\setbeamercolor{itemize item}{fg=cor3,bg=white}
+\setbeamercolor{itemize subitem}{fg=cor4,bg=white}
+\setbeamercolor{itemize subsubitem}{fg=cor2,bg=white}
+%%%
+
+\begin{document}
+
+    \begin{frame}[plain]
+        \maketitle
+    \end{frame}
+
+    \begin{frame}
+    \frametitle{Sample frame title}
+    This is a text in the first frame. This is a text in the first frame. This is a text in the first frame.
+    \end{frame}
+
+\end{document}
