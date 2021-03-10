@@ -1,0 +1,314 @@
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,scrextend}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{array}
+\usepackage{chngcntr}
+\usetikzlibrary{decorations.pathreplacing}
+\pagestyle{fancy}
+
+% reset equation counter at each section
+\counterwithin*{equation}{section}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\renewcommand{\qed}{\hfill$\blacksquare$}
+\let\newproof\proof
+\renewenvironment{proof}{\begin{addmargin}[1em]{0em}\begin{newproof}}{\end{newproof}\end{addmargin}\qed}
+% \newcommand{\expl}[1]{\text{\hfill[#1]}$}
+
+\newenvironment{motivation}[2][Motivation]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{definition}[2][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{example}[2][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}} 
+\newenvironment{reflection}[2][Reflection]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposition}[2][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+    
+\begin{document}
+    
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+
+\lhead{MAT3040 Homework 3}
+\chead{Aron Ke}
+\rhead{\today}
+
+\section{Question 1}
+
+\begin{proof}{}
+    \noindent
+
+    Prove this by contradiction.
+
+    Suppose $\{T\mathbf{v}_1,\dots,T\mathbf{v}_k\}$ is linearly dependent in $W$. That is, $\exists \alpha_1,\dots,\alpha_k$ not all zero such that:
+
+    \[
+        \sum_{i=1}^{k}\alpha_iT\mathbf{v}_i=\mathbf{0}_W
+    \]
+
+    Then
+
+    \[
+        T\left(\sum_{i=1}^{k}\alpha_i\mathbf{v}_i\right)=\mathbf{0}_W
+    \]
+
+    So $\sum_{i=1}^{k}\alpha_i\mathbf{v}_i\in \textrm{Ker}(T)$
+
+    $\because \{\mathbf{v}_1,\dots,\mathbf{v}_k\}$ are linearly independent
+
+    $\therefore$
+
+    \[
+        \sum_{i=1}^{k}\alpha_i\mathbf{v}_i\not=\mathbf{0}_V
+    \]
+
+    However, $\because T$ is injective. That means, $\textrm{Ker}(T)=\{\mathbf{0}_V\}$.
+    
+    $\therefore$Contradiction. $\alpha_1,\dots,\alpha_k$ do not exist.
+
+    Hence, $\{T\mathbf{v}_1,\dots,T\mathbf{v}_k\}$ is linearly independent in $W$.
+\end{proof}
+
+\pagebreak
+
+\section{Question 2}
+
+\begin{proof}{}
+    \noindent
+
+    $\forall \mathbf{w}\in W$
+
+    $\because T$ is surjective.
+
+    $\therefore\exists\mathbf{v}\in V$ such that
+
+    \begin{equation}
+        \mathbf{w}=T(\mathbf{v})
+    \end{equation}
+
+    $\because \{\mathbf{v}_1,\dots,\mathbf{v}_k\}$ spans $V$.
+
+    $\therefore\exists\alpha_1,\dots,\alpha_k$ such that
+
+    \begin{equation}
+        \mathbf{v}=\sum_{i=1}^{k}\alpha_i\mathbf{v}_i
+    \end{equation}
+
+    By $(1)$ and $(2)$,
+
+    \begin{equation}
+        \begin{aligned}
+            \mathbf{w}&=T(\mathbf{v})\\
+            &=T(\sum_{i=1}^{k}\alpha_i\mathbf{v}_i)\\
+            &=\sum_{i=1}^{k}\alpha_iT(\mathbf{v}_i)
+        \end{aligned}
+    \end{equation}
+
+    Hence, $\{T\mathbf{v}_1,\dots,T\mathbf{v}_k\}$ spans $W$.
+\end{proof}
+
+\pagebreak
+
+\section{Question 3}
+
+\begin{proof}{}
+    \noindent
+
+    $\because T:V\rightarrow W$ is an isomorphism.
+
+    $\therefore T$ is bijective. Then the following three conditions are satisfied.
+
+    \begin{equation}
+        \forall \mathbf{v}_1\in V,\mathbf{v}_2\in V,\mathbf{v}_1\not=\mathbf{v}_2\Longrightarrow T(\mathbf{v}_1)\not=T(\mathbf{v}_2)
+    \end{equation}
+
+    \begin{equation}
+        \forall \mathbf{w}\in W,\exists\mathbf{v}\in V,\textrm{such that}\ \mathbf{w}=T(\mathbf{v})
+    \end{equation}
+
+    \begin{equation}
+        \textrm{Ker}(T)=\{\mathbf{0}_V\}
+    \end{equation}
+
+    $\because Span(\{\mathbf{v}_1,\dots,\mathbf{v}_n\})=V$
+
+    $\therefore$ By (2), $\forall\mathbf{w}\in W,\exists\alpha_1,\dots,\alpha_n,\mathbf{w}=T(\sum_{i=1}^{n}\alpha_i\mathbf{v}_i)=\sum_{i=1}^{n}\alpha_iT(\mathbf{v}_i)$. So
+
+    \begin{equation}
+        Span(\{T(\mathbf{v}_1),\dots,T(\mathbf{v}_n)\})=W
+    \end{equation}
+
+    Suppose $\{T(\mathbf{v}_1),\dots,T(\mathbf{v}_n)\}$ is linearly dependent.
+
+    That is, $\exists\alpha_1,\dots,\alpha_n$ such that $\sum_{i=1}^{n}\alpha_iT(\mathbf{v}_i)=\mathbf{0}_W$.
+
+    \begin{equation}
+        \begin{aligned}
+            \sum_{i=1}^{n}\alpha_iT(\mathbf{v}_i)&=\mathbf{0}_W\\
+            T\left(\sum_{i=1}^{n}\alpha_i\mathbf{v}_i\right)&=\mathbf{0}_W
+        \end{aligned}
+    \end{equation}
+
+    $\sum_{i=1}^{n}\alpha_i\mathbf{v}_i\not=\mathbf{0}_V$. But $\textrm{Ker}(T)=\{\mathbf{0}_V\}$. Contradiction!
+
+    $\therefore$
+
+    \begin{equation}
+        \{T(\mathbf{v}_1),\dots,T(\mathbf{v}_n)\}\ \textrm{is linearly independent}
+    \end{equation}
+
+    Hence, $\{T(\mathbf{v}_1),\dots,T(\mathbf{v}_n)\}$ is a basis of $W$.
+\end{proof}
+
+\pagebreak
+
+\section{Question 4}
+
+\begin{proof}{}
+    \noindent
+
+    Let $dim(V)=dim(W)=n$.
+
+    Pick one basis respectively for $V$ and $W$:
+
+    \[
+        \mathcal{B}_V=\{\mathbf{v}_1,\dots,\mathbf{v}_n\},\ \mathcal{B}_W=\{\mathbf{w}_1,\dots,\mathbf{w}_n\}
+    \]
+
+    Define a linear transformation $T:V\rightarrow W$,
+
+    First define $T:\mathcal{B}_V\rightarrow\mathcal{B}_W$:
+
+    \begin{equation}
+        \forall i=1,\dots,n,\ \mathbf{v}_i=\mathbf{w}_i
+    \end{equation}
+
+    Since
+
+    \[
+        \forall\mathbf{v}\in V,\exists\alpha_1,\dots,\alpha_n,\ \textrm{such that}\ \mathbf{v}=\sum_{i=1}^{n}\alpha_i\mathbf{v}_i
+    \]
+
+    So define
+
+    \[
+        T(\mathbf{v}):=\sum_{i=1}^{n}\alpha_iT(\mathbf{v}_i)=\sum_{i=1}^{n}\alpha_i\mathbf{w}_i
+    \]
+
+    $\because$
+
+    \[
+        \forall\mathbf{w}\in W,\exists\beta_1,\dots,\beta_n,\ \textrm{such that}\ \mathbf{w}=\sum_{i=1}^{n}\beta_i\mathbf{w}_i
+    \]
+
+    $\therefore$
+
+    \[
+        \forall\mathbf{w}\in W,\mathbf{w}=\sum_{i=1}^{n}\beta_iT(\mathbf{v}_i)=T(\sum_{i=1}^{n}\beta_i\mathbf{v}_i)
+    \]that is, $T$ is surjective.
+
+    Suppose $T$ is not injective. That is
+
+    \[
+        \exists\mathbf{v}\in V,\mathbf{v}\not=\mathbf{0}_V,T(\mathbf{v})=\mathbf{0}_W
+    \]
+
+    $\because\exists\alpha_1,\dots,\alpha_n$ not all zero, such that $\mathbf{v}=\sum_{i=1}^{n}\alpha_i\mathbf{v}_i$
+
+    $\therefore$
+
+    \[
+        T(\mathbf{v})=\sum_{i=1}^{n}\alpha_i\mathbf{w}_i=\mathbf{0}_W
+    \]that is, $\mathcal{B}_W$ is linearly dependent. Contradiction!
+
+    $\therefore T$ must be injective.
+
+    Hence, $T$ is bijective, which is an isomorphism.
+\end{proof}
+
+\pagebreak
+
+\section{Question 5}
+\noindent
+
+$\because (1,3,0,0,0)$ and $(0,0,1,1,1)$ are independent
+
+and $Span(\{(1,3,0,0,0),(0,0,1,1,1)\})=\textrm{Nul}(T)$
+
+$\therefore dim(\textrm{Nul}(T))=2$
+
+So
+
+$dim(\textrm{Nul}(T))+dim(\textrm{Image}(T))=2+dim(\textrm{Image}(T))\leq2+dim(\mathbf{F}^2)=4$
+
+However, $dim(\textrm{Nul}(T))+dim(\textrm{Image}(T))=dim(\mathbb{F}^5)=5$. Contradiction!
+
+Hence, there is no such a linear transformation.
+
+\pagebreak
+
+\section{Question 6}
+
+\begin{proof}{}
+    \noindent
+
+    \noindent
+    \textbf{(a)}
+
+    $\because\forall x\in\mathbb{F},y\in\mathbb{F},\mathbf{v}_1\in V,\mathbf{v}_2\in V,$
+
+    \[
+        \begin{aligned}
+            \alpha T(x\mathbf{v}_1+y\mathbf{v}_2)&=\alpha (T(x\mathbf{v}_1+y\mathbf{v}_2))\\
+            &=\alpha (xT(\mathbf{v}_1)+yT(\mathbf{v}_2))\\
+            &=x(\alpha T)(\mathbf{v}_1)+y(\alpha T)(\mathbf{v}_2)\in W
+        \end{aligned}
+    \]
+
+    $\therefore \alpha T\in Hom_{\mathbb{F}}(V,W)$.
+
+    $\because\forall x\in\mathbb{F},y\in\mathbb{F},\mathbf{v}_1\in V,\mathbf{v}_2\in V,$
+
+    \[
+        \begin{aligned}
+            (T+S)(x\mathbf{v}_1+y\mathbf{v}_2)&=T(x\mathbf{v}_1+y\mathbf{v}_2)+S(x\mathbf{v}_1+y\mathbf{v}_2)\\
+            &=xT(\mathbf{v}_1)+yT(\mathbf{v}_2)+xS(\mathbf{v}_1)+yS(\mathbf{v}_2)\\
+            &=x(T+S)(\mathbf{v}_1)+y(T+S)(\mathbf{v}_2)\in W
+        \end{aligned}
+    \]
+
+    $\therefore (T+S)\in Hom_{\mathbb{F}}(V,W)$.
+
+    \noindent
+    \textbf{(b)}
+
+    Define $T_0(\mathbf{v})=\mathbf{0}_W,\forall\mathbf{v}\in V$.
+
+    $\because \forall T\in Hom_{\mathbb{F}}(V,W),\forall\mathbf{v}\in V,(T+T_0)(\mathbf{v})=T(\mathbf{v})$
+    
+    that is $(T+T_0)=T$
+
+    $\therefore$the additive identity in $Hom_{\mathbb{F}}(V,W)$ is $T_0$.
+\end{proof}
+
+\end{document}
