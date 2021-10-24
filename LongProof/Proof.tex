@@ -27,14 +27,14 @@
 \theoremstyle{remark}
 \newtheorem{remark}[thm]{Remark}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{A proof of ONE}
+\newcommand*\mytitle{A proof of ONE}
+\title{\mytitle}
 \author{Griffith Ke}
-\date{\today}
-\email{GriffithKe@protonmail.com}
+% \email{GriffithKe@protonmail.com}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand{\sectionmark}[1]{ \markright{#1}{} }
 \fancyhf{}
-\fancyhead[L]{}\fancyhead[C]{\rightmark}\fancyhead[R]{\thepage}
+\fancyhead[L]{\rightmark}\fancyhead[C]{\mytitle}\fancyhead[R]{\thepage}
 \pagestyle{fancy}
 \thispagestyle{plain}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
